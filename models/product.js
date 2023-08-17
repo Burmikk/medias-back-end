@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const handleMogoosError = require("../middlewares/handleMogoosError");
 
 const productShema = new Schema(
     {
@@ -13,6 +14,8 @@ const productShema = new Schema(
     },
     { versionKey: false }
 );
+
+productShema.post("save", handleMogoosError);
 
 const Product = model("product", productShema);
 

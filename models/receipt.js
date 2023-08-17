@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const handleMogoosError = require("../middlewares/handleMogoosError");
 
 const receiptShema = new Schema(
     {
@@ -17,6 +18,7 @@ const receiptShema = new Schema(
     },
     { versionKey: false }
 );
+receiptShema.post("save", handleMogoosError);
 
 const Receipt = model("receipt", receiptShema);
 
@@ -27,7 +29,6 @@ const Receipt = model("receipt", receiptShema);
 const Joi = require("joi");
 
 const closeReceiptSchema = Joi.object({
-    id: Joi.required(),
     total: Joi.number().required(),
 });
 const schemas = {
