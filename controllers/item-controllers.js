@@ -14,7 +14,7 @@ const deleteItem = async (req, res) => {
     if (!result) {
         throw HttpError(404);
     }
-    res.json({ message: "contact deleted" });
+    res.json({ message: "product deleted" });
 };
 
 const changeItem = async (req, res) => {

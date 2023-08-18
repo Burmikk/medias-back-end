@@ -13,7 +13,7 @@ const receiptShema = new Schema(
         },
         total: {
             type: Number,
-            default: 0,
+            require: [true, "Set total of receipt"],
         },
     },
     { versionKey: false }
@@ -28,11 +28,11 @@ const Receipt = model("receipt", receiptShema);
 
 const Joi = require("joi");
 
-const closeReceiptSchema = Joi.object({
+const ReceiptSchema = Joi.object({
     total: Joi.number().required(),
 });
 const schemas = {
-    closeReceiptSchema,
+    ReceiptSchema,
 };
 
 module.exports = { Receipt, schemas };
