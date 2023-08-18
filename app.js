@@ -8,6 +8,7 @@ const app = express();
 const productsRouter = require("./routes/products-routes");
 const receiptRouter = require("./routes/receipt-routes");
 const itemsRouter = require("./routes/items-routes");
+const apiRouter = require("./routes/api-routes");
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/products", productsRouter);
 app.use("/receipt", receiptRouter);
 app.use("/items", itemsRouter);
+app.use("/api-docs", apiRouter);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
