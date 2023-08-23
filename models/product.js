@@ -19,4 +19,18 @@ productShema.post("save", handleMogoosError);
 
 const Product = model("product", productShema);
 
-module.exports = Product;
+/**
+  Joi Schema----------------------------------------------------------------------
+*/
+
+const Joi = require("joi");
+
+const ProductSchema = Joi.object({
+    name: Joi.string().required(),
+    price: Joi.number().required(),
+});
+const schemas = {
+    ProductSchema,
+};
+
+module.exports = { Product, schemas };
