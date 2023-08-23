@@ -18,7 +18,7 @@
                 "description": "Повертає всі товари",
                 "responses": {
                     "200": {
-                        "description": "All the devices",
+                        "description": "response",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -40,6 +40,61 @@
                                             "price": 18
                                         }
                                     ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Products"],
+                "description": "Створює продукт",
+
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                "responses": {
+                    "201": {
+                        "description": "response",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "_id": "64deb0af48eca1de2589dcf7",
+                                    "name": "Арахіс 'Big Bob'",
+                                    "price": 17
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Products"],
+                "description": "Видаляє всі продукти",
+
+                "responses": {
+                    "200": {
+                        "description": "response",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "All products have been removed."
                                 }
                             }
                         }

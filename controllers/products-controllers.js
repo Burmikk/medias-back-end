@@ -11,7 +11,7 @@ const addProduct = async (req, res) => {
     const { name } = req.body;
     const isExisted = await Product.findOne({ name });
     if (isExisted) {
-        throw HttpError(404, "product already existe");
+        throw HttpError(404, "product already exists");
     } else {
         const result = await Product.create(req.body);
         res.status(201).json(result);
