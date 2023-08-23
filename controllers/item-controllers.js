@@ -4,8 +4,14 @@ const ctrlWrapper = require("../utils/ctrlWrapper");
 const HttpError = require("../utils/HttpError");
 
 const createItem = async (req, res) => {
-    const result = await Item.create(req.body);
-    res.status(201).json(result);
+    const { product_id, receipt_id } = req.body;
+    const isExisted = await Item.findOne({ product_id, receipt_id });
+    if (isExisted) {
+        throw HttpError(404, "item already exists");
+    } else {
+        const result = await Item.create(req.body);
+        res.status(201).json(result);
+    }
 };
 
 const deleteItem = async (req, res) => {
