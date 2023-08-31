@@ -26,8 +26,7 @@ const deleteItem = async (req, res) => {
 const changeItem = async (req, res) => {
     const { quantity } = req.body;
     const { itemId } = req.params;
-    const dateClose = new Date();
-    const formatedDate = dateClose.toLocaleString();
+
     const result = await Item.findByIdAndUpdate(itemId, { quantity }, { new: true });
     if (!result) {
         throw HttpError(404, "item not found");
